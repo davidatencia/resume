@@ -8,30 +8,128 @@
     <link rel="shortcut icon" href="/assets/img/profile_photo-icon.png" />
   </head>
   <body id="layout">
-    <header id="header">
+    <header id="header" class="flex-space-between">
       <div id="profile-info" class="flex-center">
         <img src="./assets/img/profile_photo.png" alt="profile_photo" />
         <span>David Javier Atencia Dimingo</span>
       </div>
-      <!-- 
-        TODO: finish to create this
 
       <nav id="navbar-layout">
         <ul class="flex-center">
-          <li class="navbar-option"><a href="#layout">Home</a></li>
-          <li class="navbar-option"><a href="#about">About</a></li>
-          <li class="navbar-option"><a href="#experience">Experience</a></li>
-          <li class="navbar-option"><a href="#education">Education</a></li>
-          <li class="navbar-option"><a href="#skills">Skills</a></li>
-          <li class="navbar-option"><a href="#projects">Projects</a></li>
-          <li class="navbar-option"><a href="#contact">Contact</a></li>
+          <li class="navbar-option zoom-animation">
+            <a href="#home">Home</a>
+          </li>
+          <li class="navbar-option zoom-animation">
+            <a href="#about">About</a>
+          </li>
+          <li class="navbar-option zoom-animation">
+            <a href="#education">Education</a>
+          </li>
+          <li class="navbar-option zoom-animation">
+            <a href="#projects">Projects</a>
+          </li>
+          <li class="navbar-option zoom-animation">
+            <a href="#contact">Contact</a>
+          </li>
         </ul>
-      </nav> -->
+
+        <img
+          class="header-menu-icon"
+          src="/assets/icons/menu-svgrepo-com.svg"
+          alt="icon"
+        />
+      </nav>
     </header>
 
-    <main id="container"></main>
+    <main id="container">
+      <section id="home" class="section home flex-center">
+        <h1 class="press-start-2p-regular home-title zoom-animation">
+          Hey, i'm David Atencia
+        </h1>
+        <span class="home-subtitle"
+          >Systems engineer and software developer dedicated to building,
+          managing and enhancing web applications to help them achieve global
+          success</span
+        >
+      </section>
+
+      <section id="about" class="section about">
+        <h2 class="press-start-2p-regular">ABOUT ME</h2>
+        <div class="about-container flex-top">
+          <div class="about-about-me flex-center">
+            <h3 class="press-start-2p-regular">Get to know me</h3>
+            <span>
+              Software engineer with more than 4 years of experience in software
+              development, my main focus is in web development
+              (<b>frontend</b>), but I have also worked in mobile and backend
+              applications development. On the other hand, I have experience in
+              working with methodologies such as SCRUM and I could work in
+              international environments and communicate effectively.
+            </span>
+          </div>
+
+          <div class="about-skills flex-center">
+            <h3 class="press-start-2p-regular">My skills</h3>
+
+            <div class="skills-container flex-center">
+              <span>JavaScript</span>
+              <span>TypeScript</span>
+              <span>Java</span>
+              <span>CSS</span>
+              <span>HTML</span>
+              <span class="bounce-animation flex-center"
+                >Angular
+                <img
+                  src="/assets/icons/start-favorite-svgrepo-com.svg"
+                  alt="⭐️"
+              /></span>
+              <span>Ionic</span>
+              <span>JQuery</span>
+              <span>NodeJs</span>
+              <span>Sass</span>
+              <span>GIT</span>
+              <span>CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section education"></section>
+      <section id="projects" class="section projects"></section>
+      <section id="contact" class="section contact"></section>
+    </main>
+
+    <div class="social-media-menu flex-center">
+      <a
+        target="_blank"
+        href="https://www.linkedin.com/in/david-atencia/"
+        class="social-media-button zoom-animation"
+        ><img
+          src="/assets/icons/linkedin-rounded-svgrepo-com.svg"
+          alt="Linkedin"
+        />
+        <span class="tooltiptext">Linkedin</span></a
+      >
+      <a
+        target="_blank"
+        href="https://github.com/davidatencia"
+        class="social-media-button zoom-animation"
+        ><img src="/assets/icons/github-svgrepo-com.svg" alt="Github" />
+        <span class="tooltiptext">Github</span></a
+      >
+      <a
+        target="_blank"
+        href="https://www.instagram.com/davatdm/"
+        class="social-media-button zoom-animation"
+        ><img
+          src="/assets/icons/instagram-rounded-svgrepo-com.svg"
+          alt="Instagram"
+        />
+        <span class="tooltiptext">Instagram</span></a
+      >
+    </div>
 
     <footer id="footer"></footer>
-    <script src="./script.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
   </body>
 </html>

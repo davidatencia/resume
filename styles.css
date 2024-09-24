@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=SUSE:wght@100..800&display=swap');
+@import url('./styles/global-styles.css');
+@import url('./styles/animations.css');
 
-/* .press-start-2p-regular {
-  font-family: "Press Start 2P", system-ui;
+.press-start-2p-regular {
+  font-family: 'Press Start 2P', system-ui;
   font-weight: 400;
   font-style: normal;
-} */
+}
 
 * {
   margin: 0;
@@ -13,28 +15,31 @@
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
+  scroll-behavior: smooth;
 }
 
 #layout {
   width: 100%;
-  height: 100vh;
   display: grid;
   grid:
     'header' auto
     'main' 1fr
     'footer' auto
-    / 1fr;
+    / auto;
 }
 
 #header {
   grid-area: header;
+  width: calc(100% - 30px);
+  width: -webkit-fill-available;
   height: 70px;
   padding: 2px 15px;
+  background: white;
   box-shadow: 0px 2px 8px 0px #dcdcdc;
-  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 #profile-info {
@@ -52,34 +57,171 @@
   font-weight: bold;
 }
 
-/* 
-TODO: finish to create this
-
-
 #navbar-layout {
 }
 
-#navbar-layout ul {
+#navbar-layout .header-menu-icon {
+  width: 30px;
+  height: 30px;
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 900px) {
+    display: block;
+  }
 }
 
-#navbar-layout ul .navbar-option {
+#navbar-layout ul {
+  gap: 20px;
+  list-style-type: none;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
 #navbar-layout ul .navbar-option a {
-} */
+  text-decoration: none;
+  color: black;
+}
+
+#navbar-layout ul .navbar-option a:hover {
+  font-weight: 600;
+}
 
 #container {
   grid-area: main;
-  height: 500px;
+  margin-top: 74px;
+}
+
+#container .section {
+  height: auto;
+}
+
+#container .home {
+  min-height: calc(100vh - 74px);
+  background: linear-gradient(
+      to right,
+      rgba(232, 230, 230, 0.8),
+      rgba(245, 245, 245, 0.8)
+    ),
+    url('/assets/img/home-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+#container .home .home-title {
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#container .home .home-subtitle {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 80%;
+  text-align: center;
+}
+
+.social-media-menu {
+  padding: 10px;
+  background-color: white;
+  position: fixed;
+  top: 75%;
+  left: 0;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.33);
+}
+
+.social-media-menu .social-media-button {
+  position: relative;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+}
+
+.social-media-menu .social-media-button .tooltiptext {
+  position: absolute;
+  background-color: black;
+  top: 100%;
+  left: 110%;
+  transform: translateY(200%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.social-media-menu .social-media-button:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible;
+  top: -55px;
+}
+
+.social-media-menu .social-media-button img {
+  width: 40px;
+  height: 40px;
+}
+
+#container .about {
+  text-align: center;
+  padding: 150px 24px;
+}
+
+#container .about .about-container {
+  margin-top: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+#container .about .about-container .about-about-me {
+  flex: 1;
+  min-width: 300px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#container .about .about-container .about-about-me span {
+  text-align: center;
+  line-height: 2;
+}
+
+#container .about .about-container .about-skills {
+  flex: 1;
+  min-width: 300px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#container .about .about-container .about-skills .skills-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+#container .about .about-container .about-skills .skills-container span {
+  background-color: gainsboro;
+  padding: 12px;
+  border-radius: 5px;
+  color: #565656;
+  cursor: grab;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#container .about .about-container .about-skills .skills-container span img {
+  width: 17px;
 }
 
 #footer {
   grid-area: footer;
-  height: 100px;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 400px;
+  background-color: black;
 }
