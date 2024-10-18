@@ -1,82 +1,83 @@
-'user strict';
-const TAU = Math.PI * 2;
-const HALF_PI = Math.PI / 2;
+'use strict';
 
-Math.SineInOut = function (percent, amp) {
-  return amp * (Math.sin(percent * TAU - HALF_PI) + 1) * 0.5;
+const ONTOP_WEB_URL = 'https://www.getontop.com/';
+const SOLCIVILES_WEB_URL = 'https://solciviles.com/';
+const SKILLS_LIST = [
+  { title: 'Github', src: 'github' },
+  { title: 'Gitlab', src: 'gitlab' },
+  { title: 'HTML', src: 'html-5' },
+  { title: 'CSS', src: 'css-3' },
+  { title: 'SASS', src: 'scss2' },
+  { title: 'JavaScript', src: 'javascript' },
+  { title: 'Typescript', src: 'typescript' },
+  { title: 'JQuery', src: 'jquery' },
+  { title: 'Angular', src: 'angular' },
+  { title: 'Ionic', src: 'ionic-icon' },
+  {
+    title: 'NodeJS',
+    src: 'nodejs-icon-logo',
+  },
+  { title: 'Java', src: 'java' },
+  { title: 'SCRUM', src: 'brand-scrum' },
+];
+const ontopLink = document.querySelector('#ontop-link');
+const freelanceLink = document.querySelector('#feelance-link');
+const skillsContainer = document.querySelector('.skills-container');
+
+// Add Skills
+const addSkillsOnTemplate = () => {
+  SKILLS_LIST.forEach(({ src, title }) => {
+    skillsContainer.innerHTML += `
+      <div class="skill-animation">
+        <span class="tooltip">${title}</span>
+        <span class="svg-container">
+          <img
+            width="60px"
+            src="./assets/icons/skills/${src}-svgrepo-com.svg"
+            alt="${title}"
+          />
+        </span>
+        <span class="BG"></span>
+      </div>
+      `;
+  });
+};
+addSkillsOnTemplate();
+
+// Open external web
+const openExternalWeb = (url) => {
+  window.open(url, '_blank');
 };
 
-let app, graphics, space;
-let total_vertices = 6;
-let amplitud = 150;
-let width, height, halfHeight;
+ontopLink.addEventListener('click', () => {
+  openExternalWeb(ONTOP_WEB_URL);
+});
+freelanceLink.addEventListener('click', () => {
+  openExternalWeb(SOLCIVILES_WEB_URL);
+});
 
-function init() {
-  app = new PIXI.Application({
-    antialias: true,
-    resolution: window.devicePixelRatio,
-    transparent: true,
+// Animation
+document.addEventListener('DOMContentLoaded', () => {
+  const homeTitle = document.querySelector('.home-title');
+
+  const desktopMediaQuery = (screenSize) => {
+    return window.matchMedia(`(min-width: ${screenSize}px)`);
+  };
+
+  const applyAnimation = (mediaQuery) => {
+    if (mediaQuery.matches) {
+      homeTitle.classList.remove('zoom-animation');
+      homeTitle.classList.add('typing-effect');
+    } else {
+      homeTitle.classList.remove('typing-effect');
+      homeTitle.classList.add('zoom-animation');
+    }
+  };
+
+  const mediaQuery = desktopMediaQuery(1130);
+  applyAnimation(mediaQuery);
+
+  mediaQuery.addEventListener('change', (event) => {
+    applyAnimation(event);
   });
-  document.body.appendChild(app.view);
-  //
-  graphics = new PIXI.Graphics();
-  app.stage.addChild(graphics);
-  resize();
-  window.addEventListener('resize', resize, false);
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  render();
-}
-
-function bezier(points) {
-  let size = points.length;
-  let last = size - 4;
-  graphics.moveTo(points[0], points[1]);
-  for (let i = 0; i < size - 2; i += 2) {
-    let x0 = i ? points[i - 2] : points[0];
-    let y0 = i ? points[i - 1] : points[1];
-    let x1 = points[i + 0];
-    let y1 = points[i + 1];
-    let x2 = points[i + 2];
-    let y2 = points[i + 3];
-    let x3 = i !== last ? points[i + 4] : x2;
-    let y3 = i !== last ? points[i + 5] : y2;
-    let cp1x = x1 + (x2 - x0) / 6;
-    let cp1y = y1 + (y2 - y0) / 6;
-
-    let cp2x = x2 - (x3 - x1) / 6;
-    let cp2y = y2 - (y3 - y1) / 6;
-    graphics.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x2, y2);
-  }
-}
-
-function render() {
-  let time = new Date().getTime() * 0.001;
-  graphics.clear();
-  graphics.beginFill(0xffffff);
-  let points = [];
-  for (let i = 0; i <= total_vertices; i++) {
-    let x = space * i;
-    let amp = Math.sin(time - i) * amplitud;
-    let y = Math.SineInOut(i / total_vertices, amp);
-    points.push(x, halfHeight + y);
-  }
-  bezier(points);
-  graphics.lineTo(width, height);
-  graphics.lineTo(0, height);
-  graphics.lineTo(0, halfHeight);
-  graphics.endFill();
-}
-
-function resize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  halfHeight = height / 2;
-  space = width / total_vertices;
-  app.renderer.resize(width, height);
-}
-
-init();
-animate();
+});
