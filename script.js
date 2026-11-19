@@ -20,9 +20,27 @@ const SKILLS_LIST = [
   { title: 'Java', src: 'java' },
   { title: 'SCRUM', src: 'brand-scrum' },
 ];
+const PROJECTS_LIST = [
+  {
+    title: 'MUSÉ (FE) - marketplace and ADMV for products',
+    description:
+      'This is a project I built to practice React while also boosting a business I run with my wife. The idea is to allow our customers to browse a catalog and put together their orders more easily; for us, it also makes it simpler to manage and verify our product stock.',
+    technologies: ['JavaScript', 'React'],
+    repositoryUrl: 'https://github.com/davidatencia/muse-marketplace-fe',
+    demoUrl: 'https://muse-accesories.netlify.app/',
+  },
+  {
+    title: 'MUSÉ (BE) - marketplace and ADMV for products',
+    description:
+      'This is a project I built to practice React while also boosting a business I run with my wife. The idea is to allow our customers to browse a catalog and put together their orders more easily; for us, it also makes it simpler to manage and verify our product stock.',
+    technologies: ['NodeJS', 'Express', 'MySQL'],
+    repositoryUrl: 'https://github.com/davidatencia/muse-marketplace-be',
+  },
+];
 const ontopLink = document.querySelector('#ontop-link');
-const freelanceLink = document.querySelector('#feelance-link');
+const freelanceLink = document.querySelector('#freelance-link');
 const skillsContainer = document.querySelector('.skills-container');
+const projectsGrid = document.querySelector('.projects-grid');
 
 // Add Skills
 const addSkillsOnTemplate = () => {
@@ -43,6 +61,33 @@ const addSkillsOnTemplate = () => {
   });
 };
 addSkillsOnTemplate();
+
+// Add Projects
+const addProjectsOnTemplate = () => {
+  if (!PROJECTS_LIST.length) {
+    projectsGrid.innerHTML = '<p class="projects-empty">Próximamente...</p>';
+    return;
+  }
+
+  projectsGrid.innerHTML = PROJECTS_LIST.map(
+    ({ title, description, technologies = [], repositoryUrl, demoUrl }) => `
+      <article class="project-card">
+        <div class="project-card-content">
+          <h3 class="project-title">${title}</h3>
+          <p class="project-description">${description}</p>
+          <ul class="project-technologies" aria-label="Tecnologías utilizadas">
+            ${technologies.map((technology) => `<li>${technology}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="project-links">
+          ${repositoryUrl ? `<a href="${repositoryUrl}" target="_blank" rel="noopener noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>` : ''}
+          ${demoUrl ? `<a href="${demoUrl}" target="_blank" rel="noopener noreferrer">Ver demo <span aria-hidden="true">↗</span></a>` : ''}
+        </div>
+      </article>
+    `,
+  ).join('');
+};
+addProjectsOnTemplate();
 
 // Open external web
 const openExternalWeb = (url) => {
