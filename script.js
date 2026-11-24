@@ -27,7 +27,7 @@ const PROJECTS_LIST = [
       'This is a project I built to practice React while also boosting a business I run with my wife. The idea is to allow our customers to browse a catalog and put together their orders more easily; for us, it also makes it simpler to manage and verify our product stock.',
     technologies: ['JavaScript', 'React'],
     repositoryUrl: 'https://github.com/davidatencia/muse-marketplace-fe',
-    demoUrl: 'https://muse-accesories.netlify.app/',
+    demoUrl: 'https://www.muse-accesorios.com/',
   },
   {
     title: 'MUSÉ (BE) - marketplace and ADMV for products',
@@ -35,6 +35,7 @@ const PROJECTS_LIST = [
       'This is a project I built to practice React while also boosting a business I run with my wife. The idea is to allow our customers to browse a catalog and put together their orders more easily; for us, it also makes it simpler to manage and verify our product stock.',
     technologies: ['NodeJS', 'Express', 'MySQL'],
     repositoryUrl: 'https://github.com/davidatencia/muse-marketplace-be',
+    demoUrl: 'https://www.muse-accesorios.com/',
   },
 ];
 const ontopLink = document.querySelector('#ontop-link');
